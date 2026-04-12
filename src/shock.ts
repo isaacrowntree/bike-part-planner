@@ -35,7 +35,7 @@ export interface ShockSpec {
  */
 export const TOLERANCES = {
   eyeToEyeMm: 0.5,
-  strokeMm: 0.5,
+  strokeMm: 1.0,
   eyeletWidthMm: 0.25,
   hardwareBoltMm: 0.1,
 } as const;

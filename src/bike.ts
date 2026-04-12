@@ -29,7 +29,10 @@ import type { FrameShockSlot, ShockSpec } from "./shock.js";
 export const FUEL_EX_5_2013_STOCK_SHOCK: ShockSpec = {
   label: "RockShox Monarch RL (Trek OEM) — Fuel EX 5 2013",
   eyeToEyeMm: 184,
-  strokeMm: 50,
+  /** Measured on Isaac's dead Monarch: bore label reads "184x51".
+   *  51mm = 2.008" ≈ 2.0" imperial. Nominal is 50.8mm; Trek rounds to 50,
+   *  RockShox labels 51. Both are the same 2.0" imperial stroke. */
+  strokeMm: 50.8,
   upperMount: {
     eyeletWidthMm: 39.89,
     hardwareBoltMm: 10,

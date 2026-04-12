@@ -16,9 +16,9 @@ describe("Trek Fuel EX 5 (2013) — OEM rear shock specification", () => {
     expect(FUEL_EX_5_2013.rearWheelTravelMm).toBe(130);
   });
 
-  it("uses a 184mm eye-to-eye × 50mm stroke rear shock (Trek fitment chart)", () => {
+  it("uses a 184mm eye-to-eye × 50.8mm stroke (bore label reads '184x51' = 2.0 inches)", () => {
     expect(FUEL_EX_5_2013_STOCK_SHOCK.eyeToEyeMm).toBe(184);
-    expect(FUEL_EX_5_2013_STOCK_SHOCK.strokeMm).toBe(50);
+    expect(FUEL_EX_5_2013_STOCK_SHOCK.strokeMm).toBeCloseTo(50.8, 1);
   });
 
   it("has an average leverage ratio of 2.60:1 (130mm travel / 50mm stroke)", () => {
