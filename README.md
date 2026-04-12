@@ -45,12 +45,18 @@ src/
   springRate.ts     Spring rate calculator with ebike corrections
   catalog.ts        COIL_SHOCK_CATALOG, AIR_SHOCK_CATALOG, SPRING_CATALOG
   conversion.ts     CONVERSION_KITS + applyConversionKit() + recommendCoilConversion()
+  recipe.ts         Recipe interface — self-contained build config for any bike
   pivots.ts         OEM bearing/bolt spec + pivot health check
   references.ts     Verified research links (conversion kits, brands, retailers, forums, emails)
   cli.ts            Human-readable conversion report
   units.ts          Inch/mm, lb·in⁻¹/N·mm⁻¹, kg/lb helpers
 
+recipes/
+  fuel-ex-5-2013-ebike/
+    recipe.ts       Isaac's Fuel EX 5 ebike build (example recipe — fork this)
+
 test/
+  _helpers.ts               Shared test helpers (fuelExInputs builder)
   bike.test.ts              OEM spec assertions
   shock-fit.test.ts         Fit-check tolerance tests
   coil-conversion.test.ts   Kit application, spring rate math, pipeline

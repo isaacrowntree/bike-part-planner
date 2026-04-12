@@ -96,7 +96,7 @@ export const CONVERSION_KITS: readonly ConversionKit[] = [
       "NZ-made Trek DRCV replacement kit, similar concept to Offset: " +
       "supplies the 39.9×10 upper and 39.9×8 lower hardware needed to " +
       "run a standard imperial shock. **Published for air, not coil.** " +
-      "Closest region to Australia — ships cheaply. Email info@shockcraft.co.nz " +
+      "Closest region to Australia — ships cheaply. Email sales@shockcraft.co.nz " +
       "to confirm coil compatibility and request a one-off quote.",
     providesUpperReducer: { idMm: 10, odMm: 15.875, widthMm: 39.89 },
     providesLowerReducer: { idMm: 8, odMm: 15.875, widthMm: 39.89 },
@@ -140,7 +140,7 @@ export const CONVERSION_KITS: readonly ConversionKit[] = [
     providesUpperReducer: { idMm: 10, odMm: 22.2, widthMm: 39.89 },
     providesLowerReducer: { idMm: 8, odMm: 22.2, widthMm: 39.89 },
     eyeToEyeAdjustmentMm: -1,
-    vendors: ["Shockcraft (shockcraft.co.nz) — email info@shockcraft.co.nz"],
+    vendors: ["Shockcraft (shockcraft.co.nz) — email sales@shockcraft.co.nz"],
     approxUsd: 95,
     approxAud: 150,
     auAvailability: "import-only",

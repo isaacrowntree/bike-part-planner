@@ -11,8 +11,8 @@ import type { Reference } from "./references.js";
  * generic — it takes a Recipe and produces fit reports.
  *
  * Add a new recipe by creating a `recipes/<name>/recipe.ts` that exports
- * a `Recipe` conforming to this interface. The CLI auto-discovers
- * recipes by directory name or loads a default.
+ * a `Recipe` conforming to this interface, then import it in your CLI
+ * or test file.
  */
 export interface Recipe {
   /** Human label for this build (shown in CLI header). */
