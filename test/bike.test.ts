@@ -25,7 +25,7 @@ describe("Trek Fuel EX 5 (2013) — OEM rear shock specification", () => {
     expect(FUEL_EX_5_2013.averageLeverageRatio).toBeCloseTo(2.6, 2);
   });
 
-  it("ships as a RockShox Monarch RL from the factory (not a Fox)", () => {
+  it("ships as a RockShox Monarch RT3 from the factory (not a Fox)", () => {
     expect(FUEL_EX_5_2013_STOCK_SHOCK.label.toLowerCase()).toContain(
       "monarch",
     );
