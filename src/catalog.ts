@@ -354,6 +354,56 @@ export const AIR_SHOCK_CATALOG: readonly CatalogAirShock[] = [
       "an ebike build where damper adjustability is less critical.",
     productUrl: "https://www.marzocchi.com/products/bomber-air",
   },
+  {
+    label: "Fox Float CTD DRCV (imperial 7.25×1.75 — shorter stroke)",
+    eyeToEyeMm: 184,
+    strokeMm: 44,
+    upperMount: { eyeletWidthMm: 39.89, hardwareBoltMm: 8, style: "pin" },
+    lowerMount: { eyeletWidthMm: 39.89, hardwareBoltMm: 8, style: "pin" },
+    springType: "air",
+    bodyLengthMm: 132,
+    bodyDiameterMm: 40,
+    hasPiggyback: false,
+    inProduction: false,
+    approxUsd: 150,
+    approxAud: 250,
+    auAvailability: "used-au",
+    auVendors: [
+      "eBay AU (common — OEM fitment on 2010-2014 Fuel EX 7/8/9)",
+      "Pinkbike BuySell Oceania",
+      "FB: MTB Australia Buy Swap Sell",
+    ],
+    notes:
+      "MOST AVAILABLE option. Stock on thousands of 2010-2014 Fuel EX 7/8/9 " +
+      "and Remedy builds. Same 184mm eye-to-eye, shorter 44mm stroke = " +
+      "~113mm rear travel instead of 130mm. Firmer feel, less sag. Cheaper " +
+      "and far easier to find than 184×50. Excellent match for an ebike " +
+      "build where the extra weight already compresses the shock more.",
+  },
+  {
+    label: "RockShox Monarch RT3 (imperial 7.25×1.75 — shorter stroke)",
+    eyeToEyeMm: 184,
+    strokeMm: 44,
+    upperMount: { eyeletWidthMm: 39.89, hardwareBoltMm: 8, style: "pin" },
+    lowerMount: { eyeletWidthMm: 39.89, hardwareBoltMm: 8, style: "pin" },
+    springType: "air",
+    bodyLengthMm: 130,
+    bodyDiameterMm: 38,
+    hasPiggyback: false,
+    inProduction: false,
+    approxUsd: 120,
+    approxAud: 200,
+    auAvailability: "used-au",
+    auVendors: [
+      "eBay AU",
+      "Pinkbike BuySell Oceania",
+      "FB: MTB Australia Buy Swap Sell",
+    ],
+    notes:
+      "DebonAir version is preferable (more air volume = better small bump). " +
+      "Very common used — these were OEM on 2012-2015 Trek trail bikes. " +
+      "Compact inline body fits the tight Fuel EX shock tunnel easily.",
+  },
 ];
 
 export const SPRING_CATALOG: readonly CatalogSpring[] = [

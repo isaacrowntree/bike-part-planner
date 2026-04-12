@@ -85,12 +85,24 @@ export interface FitResult {
   reasons: readonly FitReason[];
 }
 
+export interface FitOptions {
+  /**
+   * Allow shocks with shorter stroke than OEM. A shorter stroke is always
+   * mechanically safe — the frame just gets less rear wheel travel. Useful
+   * when the OEM stroke (e.g. 184×50) is unobtainable and a shorter-stroke
+   * variant (e.g. 184×44) is widely available. The fit result will note
+   * the travel reduction.
+   */
+  allowShorterStroke?: boolean;
+}
+
 export const checkShockFit = (
   slot: FrameShockSlot,
   candidate: ShockSpec,
   candidateBodyLengthMm?: number,
   candidateBodyDiameterMm?: number,
   candidateHasPiggyback: boolean = false,
+  options: FitOptions = {},
 ): FitResult => {
   const reasons: FitReason[] = [];
   const req = slot.required;
@@ -101,10 +113,15 @@ export const checkShockFit = (
     detail: `${candidate.eyeToEyeMm}mm vs required ${req.eyeToEyeMm}mm (±${TOLERANCES.eyeToEyeMm})`,
   });
 
+  const strokeMatch = approxEqual(candidate.strokeMm, req.strokeMm, TOLERANCES.strokeMm);
+  const shorterStroke = candidate.strokeMm < req.strokeMm - TOLERANCES.strokeMm;
+  const strokeOk = strokeMatch || (options.allowShorterStroke === true && shorterStroke);
   reasons.push({
     category: "stroke",
-    ok: approxEqual(candidate.strokeMm, req.strokeMm, TOLERANCES.strokeMm),
-    detail: `${candidate.strokeMm}mm vs required ${req.strokeMm}mm (±${TOLERANCES.strokeMm})`,
+    ok: strokeOk,
+    detail: shorterStroke && strokeOk
+      ? `${candidate.strokeMm}mm shorter than OEM ${req.strokeMm}mm (accepted — less travel)`
+      : `${candidate.strokeMm}mm vs required ${req.strokeMm}mm (±${TOLERANCES.strokeMm})`,
   });
 
   reasons.push({

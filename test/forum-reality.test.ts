@@ -80,10 +80,11 @@ describe("documented-working air shock alternative path", () => {
     expect(AIR_SHOCK_CATALOG.length).toBeGreaterThan(0);
   });
 
-  it("all air shocks are sized to the stock 184×50 imperial mount", () => {
+  it("all air shocks match the 184mm eye-to-eye with OEM or shorter stroke", () => {
     for (const s of AIR_SHOCK_CATALOG) {
       expect(s.eyeToEyeMm).toBe(184);
-      expect(s.strokeMm).toBe(50);
+      expect(s.strokeMm).toBeLessThanOrEqual(51);
+      expect(s.strokeMm).toBeGreaterThanOrEqual(44);
       expect(s.upperMount.eyeletWidthMm).toBeCloseTo(39.89, 2);
       expect(s.springType).toBe("air");
     }
