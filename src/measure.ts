@@ -44,6 +44,12 @@ export const MEASUREMENTS: readonly MeasureSpec[] = [
     how: "Caliper the bar where the grips/levers clamp: 22.2 mm at the grips; 31.8 mm at the stem centre.", feeds: "display / levers" },
   { key: "rotorSizeMm", label: "Current brake rotor size", kind: "number", unit: "mm", min: 140, max: 220,
     how: "Read the size printed on the rotor, or measure its diameter.", feeds: "brakes" },
+  { key: "seatTubeIdMm", label: "Seat tube inner diameter", kind: "choice", options: ["27.2", "30.9", "31.6", "34.9"],
+    how: "Pull the seatpost and read the size etched on it, or caliper the inside of the seat tube.", feeds: "dropper" },
+  { key: "seatTubeMaxInsertMm", label: "Usable seat tube insertion", kind: "number", unit: "mm", min: 80, max: 320,
+    how: "Drop a tape into the open seat tube from the collar until it stops (a kink, bottle boss, or the suspension pivot) — that's how much post the frame can swallow.", feeds: "dropper" },
+  { key: "seatpostRouting", label: "Seatpost cable routing", kind: "choice", options: ["internal", "external"],
+    how: "Look for a cable port on the frame near the seat tube / down tube: a hole the dropper cable disappears into = internal; no port = external.", feeds: "dropper" },
 ] as const;
 
 export const measurementByKey = (key: string): MeasureSpec | undefined =>

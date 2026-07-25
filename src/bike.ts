@@ -1,4 +1,6 @@
 import type { FrameShockSlot, ShockSpec } from "./shock.js";
+// re-export so recipe.ts / conversion.ts can source the slot type from bike.js
+export type { FrameShockSlot } from "./shock.js";
 
 /**
  * OEM stock shock for the 2013 Trek Fuel EX 5.
