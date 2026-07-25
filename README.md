@@ -1,6 +1,6 @@
-# bike-shock-planner
+# bike-part-planner
 
-A **test-driven, code-as-data** planner for mountain bike rear shock replacements, coil conversions, and ebike suspension builds. It started as a personal project to figure out whether I could fit a coil shock (or even just a modern air shock) to my 2013 Trek Fuel EX 5 ebike conversion, and it grew into a reusable framework that models rear suspension geometry, shock fitment, spring rates, frame clearance, conversion hardware, and global sourcing paths for **any** bike.
+A **test-driven, code-as-data** engine for mountain bike part fitment — rear shocks, forks, ebike motors and batteries, and the guided measurements that feed them. It started as a personal project to figure out whether I could fit a coil shock (or even just a modern air shock) to my 2013 Trek Fuel EX 5 ebike conversion, and it grew into a reusable framework that models suspension geometry, per-component fitment, spring rates, frame clearance, conversion hardware, ebike drivetrain choices, and global sourcing paths for **any** bike. (Rear-shock fitment was the first module — hence the original `bike-shock-planner` name — but it's now one part among many.)
 
 It is **not** a bike-specific script. The Fuel EX 5 model is just the first "recipe" — a self-contained configuration that describes one bike, one rider, and one set of candidate parts. Everything is written so you can drop in a new recipe for your own bike and the same fit-check and spring-rate logic runs against it.
 

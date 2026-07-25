@@ -1,8 +1,8 @@
 {
-  "name": "bike-shock-planner",
+  "name": "bike-part-planner",
   "version": "0.1.0",
   "private": false,
-  "description": "Test-driven MTB rear shock fitment planner — coil/air conversions, ebike spring rates, global sourcing",
+  "description": "Test-driven MTB part fitment engine — rear shocks, forks, ebike motors & batteries; coil/air conversions, spring rates, guided measurement, global sourcing",
   "type": "module",
   "scripts": {
     "test": "vitest run",

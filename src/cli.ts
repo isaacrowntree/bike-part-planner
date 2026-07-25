@@ -21,7 +21,7 @@ const results = recommendCoilConversion({
 });
 
 console.log(
-  `\nbike-shock-planner report — ${
+  `\nbike-part-planner report — ${
     useProfile
       ? `${ISAAC_96KG_EBIKE.label}`
       : `rider ${riderKg}kg`
