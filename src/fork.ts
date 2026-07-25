@@ -30,11 +30,13 @@ export interface FrameFrontEnd {
   headTubeLenMm: number;
   /** The A-C the frame was designed around (stock fork). */
   designAxleToCrownMm: number;
-  /** Manufacturer's max recommended fork travel for this frame. */
-  maxTravelMm: number;
+  /** Manufacturer's max recommended fork travel for this frame. Optional: when
+   *  unknown, overforking cannot be evaluated (and must NOT report a false pass). */
+  maxTravelMm?: number;
   wheelSize: WheelSize;
   axle: AxleType;
-  brakeMount: BrakeMount;
+  /** Frame caliper mount standard. Optional: unknown → the match can't be checked. */
+  brakeMount?: BrakeMount;
 }
 
 /** ≈ how much head angle changes per mm of axle-to-crown, for a typical trail bike. */
@@ -65,14 +67,19 @@ export function checkForkFit(frame: FrameFrontEnd, fork: ForkSpec): Fitment & { 
     reasons.push(block("axle", `fork axle ${fork.axle} ≠ frame ${frame.axle} — hub/axle mismatch`));
   }
 
-  if (frame.brakeMount === fork.brakeMount) {
+  if (frame.brakeMount === undefined) {
+    notes.push(`Frame brake mount isn't on file — verify the caliper standard matches the ${fork.brakeMount} fork before buying.`);
+  } else if (frame.brakeMount === fork.brakeMount) {
     reasons.push(pass("brake-mount", `${fork.brakeMount} brake mount matches`));
   } else {
     reasons.push(warn("brake-mount", `fork is ${fork.brakeMount}, frame caliper expects ${frame.brakeMount} — needs an adapter`));
   }
 
-  // travel ceiling
-  if (fork.travelMm > frame.maxTravelMm) {
+  // travel ceiling — only when the frame's max recommended travel is known;
+  // never fabricate it (that would turn overforking into a false green pass)
+  if (frame.maxTravelMm === undefined) {
+    notes.push(`Frame's max fork travel isn't on file — can't check overforking for the ${fork.travelMm} mm fork; confirm the frame's ceiling with the manufacturer.`);
+  } else if (fork.travelMm > frame.maxTravelMm) {
     reasons.push(block("travel", `${fork.travelMm} mm exceeds the frame's ${frame.maxTravelMm} mm max — overforking risks the warranty and handling`));
   } else {
     reasons.push(pass("travel", `${fork.travelMm} mm within the ${frame.maxTravelMm} mm max`));
