@@ -29,7 +29,7 @@ export const MEASUREMENTS: readonly MeasureSpec[] = [
   { key: "dropoutWidthMm", label: "Rear dropout spacing", kind: "number", unit: "mm", min: 100, max: 200,
     how: "With the rear wheel out, caliper the inside gap between the dropout faces.", feeds: "hub motor" },
   { key: "axleType", label: "Axle type", kind: "choice", options: ["qr9", "thru15", "boost15x110", "qr15"],
-    how: "A lever you flip open = quick-release. A bolt you thread through = thru-axle (note the diameter stamped on it).", feeds: "hub motor / fork" },
+    how: "A lever you flip open = quick-release. A bolt you thread through = thru-axle (note the diameter stamped on it).", feeds: "hub motor / fork wheel" },
   { key: "steererType", label: "Steerer / head tube", kind: "choice", options: ["straight", "tapered"],
     how: "Look at the fork steerer where it enters the frame: one diameter = straight (1-1/8\"); wider at the bottom = tapered (1.5\").", feeds: "fork" },
   { key: "headTubeLenMm", label: "Head tube length", kind: "number", unit: "mm", min: 80, max: 200,
@@ -50,6 +50,42 @@ export const MEASUREMENTS: readonly MeasureSpec[] = [
     how: "Drop a tape into the open seat tube from the collar until it stops (a kink, bottle boss, or the suspension pivot) — that's how much post the frame can swallow.", feeds: "dropper" },
   { key: "seatpostRouting", label: "Seatpost cable routing", kind: "choice", options: ["internal", "external"],
     how: "Look for a cable port on the frame near the seat tube / down tube: a hole the dropper cable disappears into = internal; no port = external.", feeds: "dropper" },
+
+  // tire clearance
+  { key: "rimInternalWidthMm", label: "Rim internal width", kind: "number", unit: "mm", min: 15, max: 60,
+    how: "Caliper across the inside of the rim bed, between the bead walls (not the outer edge).", feeds: "tire" },
+  { key: "frameMaxTireWidthMm", label: "Frame tire clearance", kind: "number", unit: "mm", min: 25, max: 120,
+    how: "Measure the gap between the tire and the tightest point of the frame/fork (chainstay bridge, seatstay, or fork arch), then add it to your current tire's measured width.", feeds: "tire" },
+
+  // brake rotor / caliper mount
+  { key: "caliperMountType", label: "Caliper mount type", kind: "choice", options: ["post", "is", "flat"],
+    how: "Post-mount: bolts thread vertically into the frame/fork tabs. IS: two horizontal bolts through a bracket. Flat-mount: small road/gravel interface.", feeds: "rotor" },
+  { key: "caliperNativeRotorMm", label: "Native (no-adapter) rotor size", kind: "number", unit: "mm", min: 140, max: 203,
+    how: "The smallest rotor the mount takes with no adapter — often printed near the caliper tabs, or check the fork/frame spec.", feeds: "rotor" },
+  { key: "maxRotorMm", label: "Max rotor rating", kind: "number", unit: "mm", min: 140, max: 230,
+    how: "The largest rotor the fork/frame is rated for — from the fork lowers or the maker's spec.", feeds: "rotor" },
+  { key: "hubInterface", label: "Rotor hub interface", kind: "choice", options: ["6-bolt", "centerlock"],
+    how: "Six small bolts holding the rotor = 6-bolt. A single splined lockring = Center Lock.", feeds: "rotor wheel" },
+
+  // wheel / hub
+  { key: "rearSpacingMm", label: "Rear hub spacing (OLD)", kind: "number", unit: "mm", min: 100, max: 200,
+    how: "With the rear wheel out, caliper the inside gap between the dropout faces (over-locknut dimension).", feeds: "wheel" },
+
+  // cockpit
+  { key: "stemBarBoreMm", label: "Stem bar clamp bore", kind: "choice", options: ["25.4", "31.8", "35"],
+    how: "Caliper the centre clamp of your current bar where the stem grips it: 31.8 or 35 mm on modern bikes.", feeds: "cockpit" },
+  { key: "steererClampMm", label: "Steerer clamp diameter", kind: "choice", options: ["28.6", "38.1"],
+    how: "Almost always 28.6 mm (1-1/8\") on modern bikes; 38.1 mm (1.5\") only on some old/DH frames.", feeds: "cockpit" },
+
+  // saddle / seatpost head
+  { key: "seatpostAcceptsRail", label: "Seatpost rail clamp", kind: "choice", options: ["round-7", "oval-7x9-alloy", "oval-7x9-carbon"],
+    how: "Look at your seatpost head: a round cradle = round-7; an oval cradle marked for carbon rails = carbon oval. Alloy oval otherwise.", feeds: "saddle" },
+
+  // drivetrain (current setup, for a part-vs-part check)
+  { key: "currentFreehubDriver", label: "Current freehub driver", kind: "choice", options: ["hg", "hg-11road", "xd", "xdr", "microspline", "campagnolo"],
+    how: "The splined body the cassette slides onto: plain splines = HG; a smooth threaded core = SRAM XD/XDR; fine tall splines = Shimano Micro Spline.", feeds: "cassette" },
+  { key: "currentDrivetrainSpeed", label: "Current drivetrain speed", kind: "number", unit: "-", min: 6, max: 13,
+    how: "Count the cogs on your cassette, or read it off the shifter (e.g. '12-speed').", feeds: "cassette chain" },
 ] as const;
 
 export const measurementByKey = (key: string): MeasureSpec | undefined =>
