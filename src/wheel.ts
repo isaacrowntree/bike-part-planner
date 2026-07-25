@@ -9,8 +9,10 @@
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
 import type { WheelSize, AxleType } from "./fork.js";
 import { BSD } from "./tire.js";
+import type { HubInterface } from "./standards.js";
 
-export type HubInterface = "6-bolt" | "centerlock";
+// re-export so importers (e.g. rotor.ts) can keep sourcing this from wheel.js
+export type { HubInterface } from "./standards.js";
 
 export interface DropoutTarget {
   position: "front" | "rear";

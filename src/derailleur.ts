@@ -9,10 +9,10 @@
  * SRAM Transmission (T-Type) bolts to a UDH frame with no hanger.
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
+import type { Actuation } from "./standards.js";
 
-export type Actuation =
-  | "shimano-mtb-11" | "shimano-mtb-12" | "shimano-road-11"
-  | "sram-exact" | "sram-x-actuation" | "sram-eagle" | "sram-t-type";
+// re-export so importers (e.g. shifter.ts) can keep sourcing this from derailleur.js
+export type { Actuation } from "./standards.js";
 export type FrameMount = "hanger" | "udh";
 
 export interface DerailleurSpec {

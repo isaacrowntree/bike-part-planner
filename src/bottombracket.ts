@@ -8,11 +8,14 @@
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
 
-export type ShellStandard = "bsa" | "italian" | "t47" | "pf30" | "bb30" | "pf92" | "bb86";
-export type Spindle = "24" | "30" | "dub" | "gxp";
+import { isThreadedBB, NATIVE_SPINDLE, chainlineTarget, type BBStandard, type Spindle } from "./standards.js";
+
+// ShellStandard is an alias of the shared BBStandard; re-export both for compat.
+export type ShellStandard = BBStandard;
+export type { BBStandard, Spindle } from "./standards.js";
 
 export interface Shell {
-  standard: ShellStandard;
+  standard: BBStandard;
   widthMm: number; // 68/73 MTB, 83 DH, 100 fat, 86.5 road
 }
 export interface CrankSpec {
@@ -20,16 +23,10 @@ export interface CrankSpec {
   spindle: Spindle;
 }
 
-const THREADED: ShellStandard[] = ["bsa", "italian", "t47"];
-/** Native spindle a shell was designed around (no reducer needed). */
-const NATIVE_SPINDLE: Record<ShellStandard, Spindle> = {
-  bsa: "24", italian: "24", t47: "30", pf30: "30", bb30: "30", pf92: "24", bb86: "24",
-};
-
 export function checkBBFit(shell: Shell, crank: CrankSpec): Fitment {
   const reasons: Reason[] = [];
   const notes: string[] = [];
-  const threaded = THREADED.includes(shell.standard);
+  const threaded = isThreadedBB(shell.standard);
   const native = NATIVE_SPINDLE[shell.standard];
 
   // There is a BB for essentially every shell×spindle pair — report which kind.
@@ -53,7 +50,7 @@ export function checkBBFit(shell: Shell, crank: CrankSpec): Fitment {
 
 /** Boost (148 rear) wants a 52 mm chainline; non-Boost (142) a 49 mm. */
 export function checkChainline(rearSpacingMm: number, crankChainlineMm: number): Fitment {
-  const target = rearSpacingMm >= 148 ? 52 : 49;
+  const target = chainlineTarget(rearSpacingMm);
   if (Math.abs(crankChainlineMm - target) <= 1) {
     return resolve([pass("chainline", `${crankChainlineMm} mm chainline matches the ${target} mm target for ${rearSpacingMm} mm spacing`)]);
   }

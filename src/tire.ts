@@ -8,10 +8,11 @@
  * light-bulb (too wide) or square off (too narrow).
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
-import type { WheelSize } from "./fork.js";
+import type { WheelSize } from "./standards.js";
 
-/** Bead-seat / ISO diameter for each wheel family. */
-export const BSD: Record<WheelSize, number> = { "26": 559, "27.5": 584, "29": 622, "700c": 622 };
+// BSD now lives in standards.ts (single source of truth); re-export for compat.
+export { BSD } from "./standards.js";
+import { BSD } from "./standards.js";
 
 export interface FrameTireClearance {
   wheel: WheelSize;

@@ -10,9 +10,10 @@
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
 import type { WheelSize, AxleType } from "./fork.js";
+import { isThreadedBB, type BBStandard, type FrameMaterial } from "./standards.js";
 
-export type BBStandard = "bsa" | "bsa-eccentric" | "pf30" | "bb92" | "bb30" | "t47";
-export type FrameMaterial = "alloy" | "steel" | "titanium" | "carbon";
+// re-export so existing importers keep sourcing these from motor.js
+export type { BBStandard, FrameMaterial } from "./standards.js";
 
 export interface MidDriveSpec {
   label: string;
@@ -32,7 +33,7 @@ export function checkMidDriveFit(bb: FrameBB, motor: MidDriveSpec): Fitment {
   const reasons: Reason[] = [];
   const notes: string[] = [];
 
-  const threaded = bb.standard === "bsa" || bb.standard === "bsa-eccentric" || bb.standard === "t47";
+  const threaded = isThreadedBB(bb.standard);
   if (motor.fitsBB.includes(bb.standard)) {
     reasons.push(pass("bb-standard", `${bb.standard} shell is directly supported`));
   } else if (!threaded) {

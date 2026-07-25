@@ -8,11 +8,10 @@
  * fork's travel exceeds what the frame was designed around.
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
+import type { SteererType, WheelSize, AxleType, BrakeMount } from "./standards.js";
 
-export type SteererType = "straight" | "tapered"; // straight 1-1/8"; tapered 1.5"→1-1/8"
-export type WheelSize = "26" | "27.5" | "29" | "700c";
-export type AxleType = "qr9" | "thru15" | "boost15x110" | "qr15";
-export type BrakeMount = "post" | "flat" | "is";
+// re-export so existing importers can keep sourcing these from fork.js
+export type { SteererType, WheelSize, AxleType, BrakeMount } from "./standards.js";
 
 export interface ForkSpec {
   label: string;

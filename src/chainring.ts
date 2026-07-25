@@ -5,6 +5,7 @@
  * (an Eagle ring and a Hyperglide+ chain mesh imperfectly).
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
+import { chainlineFromOffset, chainlineTarget } from "./standards.js";
 
 export type RingMount =
   | "bcd-104" | "bcd-96-shimano" | "bcd-110-4" | "bcd-107-sram"
@@ -24,8 +25,6 @@ export interface ChainringSpec {
   profile: ChainProfile;
 }
 
-const chainlineFromOffset = (offsetMm: number) => 55 - offsetMm; // 6→49, 3→52, 0→55
-
 export function checkChainringFit(crank: CrankInterface, ring: ChainringSpec, chain: ChainProfile): Fitment {
   const reasons: Reason[] = [];
   const notes: string[] = [];
@@ -40,7 +39,7 @@ export function checkChainringFit(crank: CrankInterface, ring: ChainringSpec, ch
   }
 
   const chainline = chainlineFromOffset(ring.offsetMm);
-  const target = crank.rearSpacingMm >= 148 ? 52 : 49;
+  const target = chainlineTarget(crank.rearSpacingMm);
   if (Math.abs(chainline - target) <= 1) {
     reasons.push(pass("chainline", `${ring.offsetMm} mm offset → ${chainline} mm chainline, right for ${crank.rearSpacingMm} mm spacing`));
   } else {
