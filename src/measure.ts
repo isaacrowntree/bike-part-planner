@@ -58,6 +58,12 @@ export const MEASUREMENTS: readonly MeasureSpec[] = [
   { key: "headtubeBottomShis", label: "Head tube bottom (SHIS)", kind: "choice", options: ["ZS56/40", "EC44/40", "IS52/40", "ZS44/30", "EC44/30"],
     how: "The bottom headset standard, e.g. ZS56/40 for a tapered lower.", feeds: ["headset"] },
 
+  // ---- rear shock ----
+  { key: "shockE2EMm", label: "Rear shock eye-to-eye", kind: "number", unit: "mm", min: 100, max: 260,
+    how: "Centre of the upper shock eye to centre of the lower eye — or read it off the current shock (e.g. 210).", feeds: ["rear-shock"] },
+  { key: "shockStrokeMm", label: "Rear shock stroke", kind: "number", unit: "mm", min: 30, max: 75,
+    how: "The shock's rated stroke, stamped on the body or in the spec (e.g. 55). Length×stroke like 210×55.", feeds: ["rear-shock"] },
+
   // ---- battery ----
   { key: "downtubeUsableMm", label: "Usable downtube length", kind: "number", unit: "mm", min: 150, max: 650,
     how: "Measure the straight run of the downtube where a battery case could sit, between the head tube and the BB.", feeds: ["battery"] },
