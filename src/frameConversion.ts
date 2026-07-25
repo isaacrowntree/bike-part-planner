@@ -13,6 +13,11 @@
  *
  * Numbers are practitioner rules of thumb, labelled as such — solid to gate on,
  * not certified engineering limits.
+ *
+ * ADVISORY, like ebikeLegal. `block` reasons here are strong SAFETY warnings,
+ * but the app surfaces them as dismissible — a rider can acknowledge the risk
+ * and proceed (and buy). The severity communicates how serious the warning is,
+ * not a hard stop on the funnel.
  */
 import { block, warn, pass, resolve, type Fitment, type Reason } from "./fit.js";
 import type { FrameMaterial } from "./motor.js";
