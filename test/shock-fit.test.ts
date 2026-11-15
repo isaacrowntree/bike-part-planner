@@ -75,7 +75,7 @@ describe("checkShockFit — dimensional tolerance enforcement", () => {
 /**
  * This is the test that lets the user feed real dimensions scraped from
  * a manufacturer's spec sheet and get a pass/fail. Treat it as a template
- * — copy the block, paste real numbers, run `npm test`.
+ * — copy the block, paste real numbers, run `bun run test`.
  */
 describe("example: plugging in real aftermarket shock dimensions", () => {
   it("(template) Marzocchi Bomber CR 184x50 — standard imperial pin", () => {

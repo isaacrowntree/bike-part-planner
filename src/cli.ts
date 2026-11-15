@@ -90,7 +90,7 @@ console.log(
 );
 console.log();
 
-console.log("Key references (run `npx tsx src/references.ts` for all):");
+console.log("Key references (run `bunx tsx src/references.ts` for all):");
 console.log(`  Conversion kits: ${ALL_REFERENCES.conversionKits.length} links`);
 console.log(`  Air shock brands: ${ALL_REFERENCES.airShockBrands.length} links`);
 console.log(`  Retailers: ${ALL_REFERENCES.retailers.length} links`);

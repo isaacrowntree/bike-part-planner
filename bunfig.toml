@@ -1,0 +1,3 @@
+[install]
+# 24h quarantine on newly published versions (seconds)
+minimumReleaseAge = 86400

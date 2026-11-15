@@ -45,12 +45,12 @@ Manufacturers reliably publish *geometry* but often omit the *interface standard
 ## Running
 
 ```bash
-npm install
-npm test          # run the full suite
-npx tsx src/cli.ts   # human-readable report for the default profile
+bun install
+bun run test      # run the full suite
+bunx tsx src/cli.ts  # human-readable report for the default profile
 ```
 
-`npm test` is the fastest way to see what the engine currently guarantees — the test names read as a spec of the encoded behaviour, and `test/accuracy-audit.test.ts` in particular pins the real-world standards and the exact pass/warn/block boundaries.
+`bun run test` is the fastest way to see what the engine currently guarantees — the test names read as a spec of the encoded behaviour, and `test/accuracy-audit.test.ts` in particular pins the real-world standards and the exact pass/warn/block boundaries.
 
 ## Extending it
 
